@@ -1,0 +1,7 @@
+# Ignore all Nsight Systems (.nsys-rep) reports
+**/*.nsys-rep
+
+# Ignore all Nsight Compute (NCU) reports
+**/*.ncu-rep
+
+**/*.txt
