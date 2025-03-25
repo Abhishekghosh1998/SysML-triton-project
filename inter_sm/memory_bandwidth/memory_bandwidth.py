@@ -22,7 +22,7 @@ def memory_kernel(in_ptr, out_ptr, num_floats: tl.constexpr, num_iters: tl.const
 
 # ---------------------- DRIVER FUNCTION ----------------------
 def run_kernel(kernel, args, grid, block_size, num_warps, num_runs=10, stream=None):
-    print(f"args: {args}")
+    # print(f"args: {args}")
     torch.cuda.synchronize()
     start_time = time.time()
 
@@ -70,6 +70,7 @@ def main(mode, num_tb, num_threads_per_tb, num_iters, num_bytes):
         lat_sec = time_Copy
         tot_num_bytes = 2 * 1.0 * num_iters * num_bytes
         bw = (tot_num_bytes / lat_sec) / (1024 * 1024 * 1024) # GB/s
+        print(f"Copy Kernel Latency: {lat_sec:.6f} sec")
         print(f"Average achieved bandwidth: {bw:.6f} GB/s")
     elif mode == 2:
         print("\n[Running two Copy Kernel sequentially]")

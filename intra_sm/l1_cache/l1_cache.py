@@ -57,7 +57,7 @@ def memory_kernel_per_tb(
 
 # ---------------------- DRIVER FUNCTION ----------------------
 def run_kernel(kernel, args, grid, block_size, num_warps, num_runs=10, stream=None):
-    print(f"args: {args}")
+    # print(f"args: {args}")
     torch.cuda.synchronize()
     start_time = time.time()
 
@@ -132,10 +132,10 @@ def main(mode, num_threads_per_tb, num_bytes_per_tb, unified_l1_cache_size, num_
             end_event.record()
             torch.cuda.synchronize()
             times.append(start_event.elapsed_time(end_event))
-        print(f"{args_memory_1 = }")
-        print(f"{sum(args_memory_1['out_ptr']) = }")
-        print(f"{args_memory_2 = }")
-        print(f"{sum(args_memory_2['out_ptr']) = }")
+        # print(f"{args_memory_1 = }")
+        # print(f"{sum(args_memory_1['out_ptr']) = }")
+        # print(f"{args_memory_2 = }")
+        # print(f"{sum(args_memory_2['out_ptr']) = }")
         avg_time = sum(times) / (num_runs * 1000)
         print(f"Sequential Execution Latency: {avg_time:.6f} sec")
 
@@ -170,10 +170,10 @@ def main(mode, num_threads_per_tb, num_bytes_per_tb, unified_l1_cache_size, num_
             span = max(time1, time2, makespan1, makespan2)
             times.append(span)
         
-        print(f"{args_memory_1 = }")
-        print(f"{sum(args_memory_1['out_ptr']) = }")
-        print(f"{args_memory_2 = }")
-        print(f"{sum(args_memory_2['out_ptr']) = }")
+        # print(f"{args_memory_1 = }")
+        # print(f"{sum(args_memory_1['out_ptr']) = }")
+        # print(f"{args_memory_2 = }")
+        # print(f"{sum(args_memory_2['out_ptr']) = }")
         
         avg_time = sum(times) / (num_runs * 1000)
         print(f"Concurrent Execution Latency: {avg_time:.6f} sec")
